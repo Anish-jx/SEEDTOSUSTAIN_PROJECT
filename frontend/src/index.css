@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 171 77% 98.5%;
+        --foreground: 171 80% 10%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 171 80% 10%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 171 80% 10%;
+
+        --primary: 173 80% 32%;
+        --primary-foreground: 171 77% 98.5%;
+
+        --secondary: 171 77% 92%;
+        --secondary-foreground: 171 80% 15%;
+
+        --muted: 171 30% 95%;
+        --muted-foreground: 171 40% 40%;
+
+        --accent: 171 80% 90%;
+        --accent-foreground: 173 80% 32%;
+
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 98%;
+
+        --border: 171 40% 90%;
+        --input: 171 40% 90%;
+        --ring: 173 80% 32%;
+
+        --radius: 0.75rem;
+
+        --font-sans: 'Geist', sans-serif;
+        --font-mono: 'Geist Mono', monospace;
+
+        --sidebar-background: 0 0% 98%;
+        --sidebar-foreground: 240 5.3% 26.1%;
+        --sidebar-primary: 240 5.9% 10%;
+        --sidebar-primary-foreground: 0 0% 98%;
+        --sidebar-accent: 240 4.8% 95.9%;
+        --sidebar-accent-foreground: 240 5.9% 10%;
+        --sidebar-border: 220 13% 91%;
+        --sidebar-ring: 217.2 91.2% 59.8%;
+    }
+
+    .dark {
+        --background: 173 80% 5%;
+        --foreground: 171 77% 98.5%;
+
+        --card: 173 80% 8%;
+        --card-foreground: 171 77% 98.5%;
+
+        --popover: 173 80% 8%;
+        --popover-foreground: 171 77% 98.5%;
+
+        --primary: 173 80% 45%;
+        --primary-foreground: 171 77% 98.5%;
+
+        --secondary: 173 60% 15%;
+        --secondary-foreground: 171 77% 98.5%;
+
+        --muted: 173 40% 15%;
+        --muted-foreground: 171 40% 65%;
+
+        --accent: 173 60% 20%;
+        --accent-foreground: 171 77% 98.5%;
+
+        --destructive: 0 62% 30%;
+        --destructive-foreground: 171 77% 98.5%;
+
+        --border: 173 40% 20%;
+        --input: 173 40% 20%;
+        --ring: 173 80% 45%;
+
+        --sidebar-background: 240 5.9% 10%;
+        --sidebar-foreground: 240 4.8% 95.9%;
+        --sidebar-primary: 224.3 76.3% 48%;
+        --sidebar-primary-foreground: 0 0% 100%;
+        --sidebar-accent: 240 3.7% 15.9%;
+        --sidebar-accent-foreground: 240 4.8% 95.9%;
+        --sidebar-border: 240 3.7% 15.9%;
+        --sidebar-ring: 217.2 91.2% 59.8%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-family: var(--font-sans);
+        font-feature-settings: "rlig" 1, "calt" 1;
+    }
+}
+
+@layer components {
+    .glass-card {
+        @apply bg-white/70 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg;
+    }
+
+    .sidebar-item {
+        @apply flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-primary/10 hover:text-primary;
+    }
+
+    .sidebar-item-active {
+        @apply bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:bg-primary/90 hover:text-primary-foreground;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/30 transition-colors;
+    }
+
+    .sensor-card {
+        @apply relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl;
+        background: radial-gradient(circle at top right, hsl(var(--primary) / 0.05), transparent);
+    }
+
+    .stat-badge {
+        @apply px-2.5 py-0.5 rounded-full text-xs font-medium;
+    }
+
+    .stat-badge-success {
+        @apply bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400;
+    }
+
+    .stat-badge-warning {
+        @apply bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400;
+    }
+
+    .stat-badge-error {
+        @apply bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400;
+    }
+}
+
+.animate-in {
+    animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
